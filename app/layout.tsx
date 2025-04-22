@@ -4,7 +4,6 @@ import "./globals.css";
 
 import { AccessibilityProvider } from "@/context/AccessibilityContext";
 import AccessibilityPanel from "@/components/AccessibilityPanel";
-import PasswordPrompt from "@/components/PasswordPrompt";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -30,9 +29,8 @@ export default function RootLayout({
         <html lang="pl">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen overflow-x-hidden`}>
         <AccessibilityProvider>
-            <PasswordPrompt/>
             {children}
-            <AccessibilityPanel/>
+            <AccessibilityPanel />
         </AccessibilityProvider>
         </body>
         </html>
