@@ -13,7 +13,7 @@ Silnik wyszukiwania przepisów językiem angielskim używając Spooncular API or
 1. **Sklonuj repozytorium**
 
 ```bash
-git clone https://github.com/your-username/kuchnia-remix.git
+git clone https://github.com/KamTheGreen/kuchnia-remix.git
 cd kuchnia-remix
 ```
 
