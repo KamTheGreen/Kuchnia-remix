@@ -2,6 +2,9 @@
 
 Silnik wyszukiwania przepisów językiem angielskim używając Spooncular API oraz Next.js
 
+
+# ⚠️ UWAGA
+Jeżeli instalujesz stronę na systemie Windows, niektóre komendy, bądź ich składnia mogą wymagać manualnej korekty.
 ## 🛠 Wymagania
 
 - Node.js 18+
