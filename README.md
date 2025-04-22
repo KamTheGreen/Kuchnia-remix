@@ -20,8 +20,7 @@ cd kuchnia-remix
 2. **Zainstaluj pakiety**
 ```bash
 npm install
-# lub
-yarn install
+
 ```
 
 3. Stwórz plik .env
@@ -33,12 +32,14 @@ cp .env.example .env
 ```bash
 SPOONACULAR_API_KEY=twój-klucz-API
 ```
-
-5. Uruchom aplikacje sieciową na swoim urządzeniu
+5.Zainstaluj i zbuduj aplikacje
 ```bash
-npm run dev
-# lub
-yarn dev 
+npx prisma
+npm run build
+```
+6.Uruchom aplikacje sieciową na swoim urządzeniu
+```bash
+npm run start
 ```
 Jeżeli nie posiadasz swojego klucza api możesz go zdobyć w linku po niżej:
 https://spoonacular.com/food-api

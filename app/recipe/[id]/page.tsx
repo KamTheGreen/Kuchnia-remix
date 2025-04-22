@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 
 type Recipe = {
@@ -25,8 +26,13 @@ async function getRecipe(id: string): Promise<Recipe | null> {
         return null;
     }
 }
+type RecipePageProps = {
+    params: {
+        id: string;
+    };
+};
 
-export default async function RecipePage({ params }: { params: { id?: string } }) {
+export default async function RecipePage({ params }: RecipePageProps) {
     const id = params?.id ?? "";
     const recipe = await getRecipe(id);
 
