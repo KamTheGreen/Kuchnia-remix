@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
 
 type Recipe = {
     id: number;
@@ -16,28 +15,20 @@ async function getRecipe(id: string): Promise<Recipe | null> {
             { cache: "no-store" }
         );
 
-        if (!res.ok) {
-            return null;
-        }
+        if (!res.ok) return null;
 
-        const data = await res.json();
-        return data;
+        return await res.json();
     } catch {
         return null;
     }
 }
-type RecipePageProps = {
-    params: {
-        id: string;
-    };
-};
 
-export default async function RecipePage({ params }: RecipePageProps) {
-    const id = params?.id ?? "";
+export default async function RecipePage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
     const recipe = await getRecipe(id);
 
     if (!recipe) {
-        return <p className="text-center mt-10 text-red-500">Nie udało się załadować przepisu.</p>;
+        return <p className="text-center mt-10 text-red-500">Recipe not found.</p>;
     }
 
     const ingredients = recipe.extendedIngredients.map((i) => i.original);
@@ -49,12 +40,12 @@ export default async function RecipePage({ params }: RecipePageProps) {
 
             <img
                 src={recipe.image}
-                alt={`Zdjęcie: ${recipe.title}`}
+                alt={`Image: ${recipe.title}`}
                 className="w-full max-h-96 object-cover rounded mb-6"
             />
 
             <section className="mb-8">
-                <h2 className="text-xl font-semibold mb-2">Składniki</h2>
+                <h2 className="text-xl font-semibold mb-2">Ingredients</h2>
                 <ul className="list-disc list-inside">
                     {ingredients.map((line, i) => (
                         <li key={i}>{line}</li>
@@ -63,9 +54,9 @@ export default async function RecipePage({ params }: RecipePageProps) {
             </section>
 
             <section>
-                <h2 className="text-xl font-semibold mb-2">Kroki przygotowania</h2>
+                <h2 className="text-xl font-semibold mb-2">Instructions</h2>
                 {steps.length === 0 ? (
-                    <p>Brak instrukcji dla tego przepisu.</p>
+                    <p>No instructions available for this recipe.</p>
                 ) : (
                     <ol className="list-decimal list-inside space-y-2">
                         {steps.map((line, i) => (
